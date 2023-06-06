@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yamon.chatroom.mapper.MessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.yamon.chatroom.domain.Message">
+            <id property="id" column="id" jdbcType="VARCHAR"/>
+            <result property="content" column="content" jdbcType="VARCHAR"/>
+            <result property="fromWho" column="from_who" jdbcType="VARCHAR"/>
+            <result property="toWho" column="to_who" jdbcType="VARCHAR"/>
+            <result property="isRead" column="is_read" jdbcType="VARCHAR"/>
+            <result property="isDisplay" column="is_display" jdbcType="TINYINT"/>
+            <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,content,from_who,
+        to_who,is_read,is_display,
+        create_time
+    </sql>
+</mapper>

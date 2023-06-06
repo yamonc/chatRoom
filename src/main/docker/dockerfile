@@ -1,0 +1,5 @@
+FROM java:8
+VOLUME /tmp/tomcat
+ADD chatRoom-0.0.1-SNAPSHOT.jar chatRoom.jar
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/chatRoom.jar"]
+

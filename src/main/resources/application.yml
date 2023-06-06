@@ -1,0 +1,74 @@
+server:
+  port: 80
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/chatroom?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+      username: root
+      password: root
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  # 发送邮件配置
+  mail:
+    host: smtp.qq.com # 配置 smtp 服务器地址
+    port: 587 # smtp 服务器的端口
+    username: 1165828007@qq.com # 配置邮箱用户名(你的邮箱地址)
+    password: vmodqijnufymfhaf # 配置申请到的授权码(刚让复制的授权码)
+    default-encoding: UTF-8 # 配置邮件编码
+    properties:
+      mail:
+        smtp:
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory # 配饰 SSL 加密工厂
+        debug: true
+    from: 1165828007@qq.com # 发送方邮件，配在yml中可方便更改
+# mybatis-enhance 自动建表配置
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml,classpath*:com/gitee/sunchenbin/mybatis/actable/mapping/*/*.xml
+#  configuration:
+#      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true #开启动态驼峰映射
+  table:
+    auto: none
+    #update	系统会自动判断哪些表是新建的，哪些字段要修改类型等，哪些字段要删除，哪些字段要新增，该操作不会破坏原有数据。
+    #none 		系统不做任何处理。
+    #add		新增表/新增字段/新增索引/新增唯一约束的功能，不做做修改和删除 (只在版本1.0.9.RELEASE及以上支持)。
+  model:
+    pack: com.yamon.blog.entity #扫描用于创建表的对象的包名，多个包用“,”隔开
+  database:
+    type: mysql
+# pagehelper配置
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
+uploadPath: D:\images\blog
+self:
+  spring:
+    quartz:
+      cron: "0 0 0 * * ?"
+security:
+  oauth2:
+    client:
+      #对应Github账号配置的Client ID
+      client-id: 747b1ff23b898e3166d2
+      #对应Github账号配置的Client secrets
+      client-secret: 57b07e585e802ed467f074533eb36036d227cdc3
+      accessTokenUri: https://github.com/login/oauth/access_token
+      userAuthorizationUri: https://github.com/login/oauth/authorize
+      clientAuthenticationScheme: form
+      #对应Github账号配置的Authorization callback URL
+      registered-redirect-uri: http://localhost:8080/user/callback
+      use-current-uri: false
+    resource:
+      userInfoUri: https://api.github.com/user
+      preferTokenInfo: false
+    sso:
+      #对应Github账号配置的Authorization callback URL
+      login-path: /user/callback
+
